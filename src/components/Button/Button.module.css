@@ -1,0 +1,14 @@
+.btn {
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+.btn-primary {
+  background: blue;
+}
+.btn-error {
+  background: red;
+}
+.btn-success {
+  background: green;
+}
