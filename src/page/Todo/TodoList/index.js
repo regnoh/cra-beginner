@@ -1,7 +1,7 @@
 import React from "react";
 import TodoItem from "./TodoItem";
-const todos = [{ id: 1, title: "read a book" }, { id: 2, title: "sing songs" }];
-const TodoList = () => {
+import PropTypes from "prop-types";
+const TodoList = ({ todos }) => {
   return (
     <ul>
       {todos.map(item => (
@@ -11,4 +11,7 @@ const TodoList = () => {
   );
 };
 
+TodoList.propTypes = {
+  todos: PropTypes.array
+};
 export default TodoList;
