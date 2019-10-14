@@ -10,5 +10,7 @@ const StyledTitle = styled.h1`
   color: #fff;
   text-transform: capitalize;
 `;
-
+Title.defaultProps = {
+  title: "Hello"
+};
 export default Title;

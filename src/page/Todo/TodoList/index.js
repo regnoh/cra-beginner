@@ -4,8 +4,8 @@ import PropTypes from "prop-types";
 const TodoList = ({ todos }) => {
   return (
     <ul>
-      {todos.map(item => (
-        <TodoItem key={item.id} todo={item} />
+      {todos.map(todo => (
+        <TodoItem key={todo.id} {...todo} />
       ))}
     </ul>
   );
