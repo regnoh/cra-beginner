@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames/bind";
-import styles from "./Button.module.css";
+import styles from "./index.module.css";
 let cx = classNames.bind(styles);
 
 const Button = ({ type = "primary", children }) => {
