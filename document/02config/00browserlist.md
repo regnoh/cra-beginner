@@ -1,7 +1,8 @@
-## browserlist：
+## browserlist
 
 > Configuring Supported Browsers
-> By default, includes a browserslist configuration in package.json
+
+> By default, includes a browserslist configuration in package.json:
 
     1. target a broad range of browsers based on global usage (> 0.2%) for production builds
     2. modern browsers for development.
