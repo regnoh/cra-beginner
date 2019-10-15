@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>redux principle</title>
+  </head>
+  <body>
+    <div>
+      <!-- 1. 组件获取到store中保存的数据挂在在自己的状态上 -->
+      <span id="countDisplay">store.getState()</span>
+      <!-- 2. 用户操作， 调用actions的方法 -->
+      <button onclick="decreaseCount()">-</button>
+      <button onclick="increaseCount()">+</button>
+    </div>
+    <!-- redux使用UMD引入: https://www.redux.org.cn/ -->
+    <script src="https://cdn.bootcss.com/redux/4.0.4/redux.min.js"></script>
+    <script>
+      const countDisplay = document.querySelector("#countDisplay");
+      // 3. actions 接收用户操作
+      const decreaseCount = () => {
+        // 进行一系列逻辑代码、异步操作
+        // ...
+
+        // 创建出对应的action， 调用store的dispatch()
+        store.dispatch({ type: "JIAN", payload: 2 });
+      };
+      const increaseCount = () => {
+        store.dispatch({ type: "JIA", payload: 2 });
+      };
+
+      const initialState = {
+        count: 5
+      };
+      const changeState = (state, { type, payload }) => {
+        if (!state) {
+          return initialState;
+        }
+        switch (type) {
+          case "JIAN":
+            return { ...state, count: state.count - payload };
+          case "JIA":
+            return { ...state, count: state.count + payload };
+          default:
+            return state;
+        }
+      };
+      const createStore = reducer => {
+        let state = null;
+        const getState = () => state;
+        const listeners = [];
+        const subscribe = listener => listeners.push(listener);
+        const dispatch = action => {
+          // 4. 接收到action并根据标识信息，调用store的changeState(), 更改状态
+          state = reducer(state, action);
+          // 5. 触发re-render, 调用renderCount()
+          listeners.forEach(listener => listener());
+        };
+        dispatch({}); // init
+        return {
+          getState,
+          dispatch,
+          subscribe
+        };
+      };
+
+      // const store = createStore(changeState);
+      // 8. 使用window.Redux.createStore() 代替上面自定义的createStore(), 效果一样
+      const redux = window.Redux;
+      const store = redux.createStore(changeState);
+      // 6. 通知view展示最新数据
+      const renderCount = () => {
+        countDisplay.innerHTML = store.getState().count;
+      };
+      renderCount(); // init
+      store.subscribe(renderCount); // 订阅了render
+    </script>
+  </body>
+</html>
