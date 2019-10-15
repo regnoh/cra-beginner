@@ -1,7 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-const Title = ({ title }) => {
-  return <StyledTitle>{title}</StyledTitle>;
+import { withAuthor } from "../../Hoc";
+
+const Title = ({ title, author }) => {
+  return (
+    <StyledTitle>
+      {title} - {author}
+    </StyledTitle>
+  );
 };
 
 const StyledTitle = styled.h1`
@@ -11,6 +17,6 @@ const StyledTitle = styled.h1`
   text-transform: capitalize;
 `;
 Title.defaultProps = {
-  title: "Hello"
+  title: "Hello from home "
 };
-export default Title;
+export default withAuthor(Title);

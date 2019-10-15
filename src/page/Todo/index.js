@@ -1,17 +1,21 @@
-import React from "react";
-import TodoHeader from "./TodoHeader";
+import React, { useState } from "react";
 import TodoInput from "./TodoInput";
 import TodoList from "./TodoList";
-const todos = [
+const initialTodos = [
   { id: 1, title: "read a book", completed: true },
   { id: 2, title: "sing songs", completed: false }
 ];
 
 const Todo = () => {
+  const [todos, setTodos] = useState(initialTodos);
+
+  const onSubmit = todo => {
+    setTodos([...todos, todo]);
+  };
+
   return (
     <>
-      <TodoHeader />
-      <TodoInput />
+      <TodoInput onSubmit={onSubmit} />
       <TodoList todos={todos} />
     </>
   );
