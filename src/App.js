@@ -1,14 +1,16 @@
 import React from "react";
 import "./App.css";
-import { Todo, Like } from "./page";
-import { Footer, Title } from "./components";
+import Footer from "./components/Todos/Footer";
+// import { Todo, Like } from "./page";
+// import { Footer, Title } from "./components";
 const App = () => {
   return (
     <div className="app">
-      <Title />
+      <Footer />
+      {/* <Title />
       <Todo />
       <Like />
-      <Footer />
+      <Footer /> */}
     </div>
   );
 };
